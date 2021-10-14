@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "API Express and Lambda",
   "main": "index.js",
+  "repository": "https://github.com/SmartEmotions/lambda-nodejs.git",
   "author": "Carlos Guadir",
   "license": "MIT",
   "scripts": {

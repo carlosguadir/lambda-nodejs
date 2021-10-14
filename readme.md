@@ -51,7 +51,7 @@ Also the role for the configuration you need to add grants
 for Lambda Execution, CloudFormation, API Gateway. You can
 give the access on IAM for AWS Provider
 
-Then you can run the command for developmento
+Then you can run the command for development
 or production stage
 
 ```shell
