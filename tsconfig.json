@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "esnext"
+        ],
+        "preserveSymlinks": true,
+        "moduleResolution": "node",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "allowSyntheticDefaultImports": true,
+        "removeComments": true,
+        "sourceMap": false,
+        "target": "esnext",
+        "outDir": "lib",
+        "skipLibCheck": true,
+        "experimentalDecorators": true
+    },
+    "include": ["./**/*.ts", "./*.ts"]
+}

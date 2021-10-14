@@ -1,0 +1,70 @@
+service: padawan
+useDotenv: true
+
+plugins:
+  - serverless-aws-documentation
+  - serverless-dynamic-dotenv
+  - serverless-webpack
+  - serverless-offline
+
+package:
+  individually: true
+
+custom:
+  webpack:
+    webpackConfig: 'webpack.config.ts'
+    keepOutputDirectory: true
+    includeModules: false
+    packager: yarn
+  documentation:
+    info:
+      version: '1.0.0'
+      title: 'Padawan API'
+      description: 'API Save pairs and query average pair'
+      contact:
+        name: 'Carlos Guadir'
+        url: 'https://github.com/SmartEmotions'
+        email: 'carlosazzamiess@gmail.com'
+    resources:
+      - path: '/pairs'
+        description: 'Save pair key string'
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs14.x
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+  stackName: ${self:service}-${self:provider.stage}
+  apiName: ${self:service}-${self:provider.stage}
+
+functions:
+  api:
+    timeout: 25
+    name: ${self:service}-${self:provider.stage}
+    description: 'Save and query pairs from datasource'
+    handler: src/api/index.handler
+    events:
+      - http:
+          path: /pairs
+          method: get
+          cors: true
+      - http:
+          path: /pairs
+          method: post
+          cors: true
+      - http:
+          path: /average
+          method: get
+          cors: true
+
+  cron:
+      timeout: 25
+      name: ${self:service}-${self:provider.stage}
+      description: 'Cron execute hourly to query average pairs from Binance'
+      handler: src/cron/index.cronHandler
+      events:
+        - schedule:
+            rate: rate(1 hour)
+            name: ${self:service}-${self:provider.stage}
+            description: 'This run service quota to API Scalars'

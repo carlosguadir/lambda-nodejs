@@ -1,0 +1,60 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "simple-import-sort"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "root": true,
+    "rules": {
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "object-curly-newline": ["error", {
+            "ImportDeclaration": {
+                "multiline": true
+            },
+            "ExportDeclaration": {
+                "multiline": true,
+                "minProperties": 3
+            }
+        }],
+        "no-useless-escape": "off",
+        "no-console": [ "error", { "allow": [ "error" ] } ],
+        "no-tabs": "off",
+        "no-mixed-spaces-and-tabs": "error",
+        "semi": [ 2, "never" ],
+        "@typescript-eslint/no-unused-vars": [ "error", { "argsIgnorePattern": "^_" } ],
+        "@typescript-eslint/restrict-plus-operands": "error",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/indent": [ "error", 2, {
+            "FunctionDeclaration": { "parameters": "first" },
+            "FunctionExpression": { "parameters": "first" }
+        } ],
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "@typescript-eslint/no-use-before-define": [ "error", {
+            "variables": true,
+            "functions": true
+        } ],
+        "quotes": [ "error", "single", {
+            "allowTemplateLiterals": true
+        } ],
+        "array-bracket-spacing": [ "error", "always" ],
+        "comma-spacing": [ "error", { "before": false, "after": true } ],
+        "object-curly-spacing": [ "error", "always" ],
+        "block-spacing": [ "error", "always" ],
+        "space-in-parens": [ "error", "always" ],
+        "max-lines": [ "error", { "max": 500, "skipBlankLines": true, "skipComments": true } ],
+        "max-lines-per-function": [ "error", 70 ],
+        "space-infix-ops": [ "error", { "int32Hint": true } ]
+    }
+}
