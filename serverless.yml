@@ -39,9 +39,9 @@ provider:
   apiName: ${self:service}-${self:provider.stage}
 
 functions:
-  apijedi:
+  api:
     timeout: 25
-    name: ${self:service}-${self:provider.stage}
+    name: api-${self:service}-${self:provider.stage}
     description: 'Save and query pairs from datasource'
     handler: src/api/handler.main
     events:
@@ -58,9 +58,9 @@ functions:
           method: get
           cors: true
 
-  cronjedi:
+  cron:
       timeout: 25
-      name: ${self:service}-${self:provider.stage}
+      name: cron-${self:service}-${self:provider.stage}
       description: 'Cron execute hourly to query average pairs from Binance'
       handler: src/cron/index.cronHandler
       events:

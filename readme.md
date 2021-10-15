@@ -1,8 +1,18 @@
 # Almost Jedi Node
 
+
 This package contains an API implementation for save pairs and query from a data source.
 This implementation works as an serverless lambda function, specifically
 is configured with AWS provider, but also works with Azure or Google Cloud
+
+## Live Demo
+
+GET - https://f26t5goga3.execute-api.us-east-1.amazonaws.com/dev/pairs
+
+POST - https://f26t5goga3.execute-api.us-east-1.amazonaws.com/dev/pairs
+
+GET - https://f26t5goga3.execute-api.us-east-1.amazonaws.com/dev/average
+
 
 ## Getting started
 
