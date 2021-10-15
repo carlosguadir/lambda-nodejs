@@ -6,6 +6,15 @@ import { AVERAGE_COLLECTION } from '../utils/constants'
 import { symbolAverage, validateSymbol } from './utils'
 const router = Router()
 
+/**
+ * @swagger
+ * /pairs:
+ *   get:
+ *     description: Query all pairs saved on data base
+ *     responses:
+ *       200:
+ *         description: Returns an array o pairs with id and symbol.
+ */
 router.get( '/pairs', async ( _: Request, response: Response ) => {
   const pairs: Pair[] = await pairsdata()
   response.contentType( 'application/json' )

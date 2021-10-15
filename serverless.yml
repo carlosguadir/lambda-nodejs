@@ -43,7 +43,7 @@ functions:
     timeout: 25
     name: ${self:service}-${self:provider.stage}
     description: 'Save and query pairs from datasource'
-    handler: src/api/index.handler
+    handler: src/api/handler.main
     events:
       - http:
           path: /pairs

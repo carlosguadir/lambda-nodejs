@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "test": "TEST=unit jest --forceExit --testTimeout=240000",
-    "off": "sls offline start --stage off",
+    "docs": "ts-node src/api/app.ts",
+    "off": "NODE_ENV=offline sls offline start --stage off",
     "dev": "sls deploy --stage dev",
     "prod": "echo 'sls deploy --stage prod' && echo 'Do this only for production'"
   },
@@ -20,6 +21,8 @@
     "@types/jest": "^27.0.2",
     "@types/node": "^16.10.9",
     "@types/supertest": "^2.0.11",
+    "@types/swagger-jsdoc": "^6.0.1",
+    "@types/swagger-ui-express": "^4.1.3",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
@@ -31,6 +34,8 @@
     "serverless-offline": "^8.2.0",
     "serverless-webpack": "^5.5.4",
     "supertest": "^6.1.6",
+    "swagger-jsdoc": "^5.0.1",
+    "swagger-ui-express": "^4.1.6",
     "ts-jest": "^27.0.5",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.4",

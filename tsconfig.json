@@ -3,6 +3,7 @@
         "lib": [
             "esnext"
         ],
+        "resolveJsonModule": true,
         "preserveSymlinks": true,
         "moduleResolution": "node",
         "noUnusedLocals": true,
