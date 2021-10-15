@@ -63,3 +63,8 @@ yarn dev
 
 This package contains an autogen docs, you can run `yarn docs`
 and open [http://localhost:3000/docs](http://localhost:3000/docs)
+
+## Cron Schedule
+
+If you want to change the value for schedule period
+go to `serverless.yml` and change rate value on cron function

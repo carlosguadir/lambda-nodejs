@@ -39,7 +39,7 @@ provider:
   apiName: ${self:service}-${self:provider.stage}
 
 functions:
-  api:
+  apijedi:
     timeout: 25
     name: ${self:service}-${self:provider.stage}
     description: 'Save and query pairs from datasource'
@@ -58,13 +58,14 @@ functions:
           method: get
           cors: true
 
-  cron:
+  cronjedi:
       timeout: 25
       name: ${self:service}-${self:provider.stage}
       description: 'Cron execute hourly to query average pairs from Binance'
       handler: src/cron/index.cronHandler
       events:
         - schedule:
+            # TODO Change this if you want increment or reduce period execution
             rate: rate(1 hour)
             name: ${self:service}-${self:provider.stage}
             description: 'This run service quota to API Scalars'
