@@ -44,8 +44,8 @@ yarn test
 
 ## Deploy lambda
 
-You need configure serverless framework on you local machine or 
-on your favorite DevOps pipeline.
+You need [configure credentials serverless framework](https://www.serverless.com/framework/docs/providers/aws/cli-reference/config-credentials) on you local machine or 
+on your favorite DevOps pipeline provider.
 
 Also the role for the configuration you need to add grants
 for Lambda Execution, CloudFormation, API Gateway. You can
@@ -58,3 +58,8 @@ or production stage
 yarn dev
 ```
 
+
+## Swagger Docs
+
+This package contains an autogen docs, you can run `yarn docs`
+and open [http://localhost:3000/docs](http://localhost:3000/docs)
