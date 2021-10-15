@@ -16,8 +16,8 @@ router.post( '/pairs', async ( { body }: Request, response: Response )  => {
   response.contentType( 'application/json' )
   const { symbol } = body
   const validate: boolean = await validateSymbol(  symbol )
-  const database = await dataSourceHandler()
-  const exist = await database.findOne( { symbol } )
+  const { database, datasource } = await dataSourceHandler()
+  const exist = await datasource.findOne( { symbol } )
   let message: string
   let responseBody: string
   if ( ! symbol || typeof symbol !== 'string' ) {
@@ -31,13 +31,14 @@ router.post( '/pairs', async ( { body }: Request, response: Response )  => {
     response.statusCode = 400
     responseBody = JSON.stringify( { success: false, message } )
   } else {
-    await database.insertOne( { symbol, createdAt: new Date() } )
+    await datasource.insertOne( { symbol, createdAt: new Date() } )
     response.statusCode = 201
     responseBody = JSON.stringify( {
       success: true,
       message: 'Pair symbol added'
     } )
   }
+  await database.close()
   response.send( responseBody )
 } )
 
@@ -48,18 +49,20 @@ router.get( '/average', async ( { query }: Request, response: Response ) => {
   if ( ! symbol || ! lectures ) {
     message = 'Symbol and lecture are required params'
   } else if ( parseInt( lectures as string ) < 2 ) {
-    message = 'Lectures needs to be grater than 2'
+    message = 'Lectures needs to be grater than 1'
   }
   if ( message ) {
     response.statusCode = 400
     response.send( JSON.stringify( { message, success: false } ) )
     return
   }
-  const pairAverages: Array< PairAverage > = await ( await dataSourceHandler( AVERAGE_COLLECTION ) )
+  const { database, datasource } = await dataSourceHandler( AVERAGE_COLLECTION )
+  const pairAverages: Array< PairAverage > = await datasource
     .find( { symbol: ( symbol as string ).toUpperCase() } )
     .sort( { createdAt: 1 } )
     .limit( parseInt( lectures as string || `2`  ) )
     .toArray() as Array< PairAverage >
+  await database.close()
   if ( pairAverages.length === 0 ) {
     message = `There no data for this pair`
   } else if ( pairAverages.length < 2 ) {
@@ -70,7 +73,7 @@ router.get( '/average', async ( { query }: Request, response: Response ) => {
   } else {
     response.send( JSON.stringify( {
       average: symbolAverage( pairAverages ),
-      numberOfLectures: lectures
+      numberOfLectures: pairAverages.length
     } ) )
   }
 } )
