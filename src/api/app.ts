@@ -3,7 +3,6 @@ import { serve, setup } from 'swagger-ui-express'
 
 import { application } from './index'
 
-
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -21,7 +20,10 @@ const options = {
       },
     }
   },
-  apis: [ `${__dirname}/router.ts` ],
+  apis: [
+    `${__dirname}/router/average.ts`,
+    `${__dirname}/router/pairs.ts`
+  ],
 }
 
 const specs = swaggerJsdoc( options )

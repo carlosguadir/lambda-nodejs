@@ -54,7 +54,7 @@
         "block-spacing": [ "error", "always" ],
         "space-in-parens": [ "error", "always" ],
         "max-lines": [ "error", { "max": 500, "skipBlankLines": true, "skipComments": true } ],
-        "max-lines-per-function": [ "error", 70 ],
+        "max-lines-per-function": [ "error", 100 ],
         "space-infix-ops": [ "error", { "int32Hint": true } ]
     }
 }
