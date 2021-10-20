@@ -1,0 +1,13 @@
+version: '3'
+services:
+  database:
+    image: 'mongo'
+    container_name: 'mongo-db'
+    environment:
+      - MONGO_INITDB_DATABASE=monguito
+      - MONGO_INITDB_ROOT_USERNAME=monguito
+      - MONGO_INITDB_ROOT_PASSWORD=monguito
+    volumes:
+      - ./monguito:/data/db
+    ports:
+      - '27017:27017'

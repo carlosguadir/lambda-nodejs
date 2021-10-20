@@ -22,19 +22,54 @@ afterEach( async () => {
 describe( 'API Testing', () => {
 
   test( 'POST /pairs', async () => {
-    await supertest( application )
-      .post( '/pairs' )
-      .send( { symbol: 'TRXUSDT' } )
-      .expect( 201 )
-      .then( ( value ) => {
-        expect( value.body ).toEqual(
-          expect.objectContaining( {
-            success: true,
-            message: 'Pair symbol added'
-          } )
-        )
-      } )
+    const test = [
+      {
+        body: {
+          success: false,
+          message: 'Symbol string pair is required'
+        },
+        code: 400,
+        data: {}
+      },
+      {
+        body: {
+          success: false,
+          message: 'Symbol not valid'
+        },
+        code: 400,
+        data: { symbol: 'asf' }
+      },
+      {
+        body: {
+          success: true,
+          message: 'Pair symbol added'
+        },
+        code: 201,
+        data: { symbol: 'TRXUSDT' }
+      },
+      {
+        body: {
+          success: false,
+          message: 'Symbol already exist'
+        },
+        code: 400,
+        data: { symbol: 'ADAUSDT' }
+      }
+
+    ]
+    for ( const { data, body, code } of test ) {
+      await supertest( application )
+        .post( '/pairs' )
+        .send( data )
+        .expect( code )
+        .then( ( value ) => {
+          expect( value.body ).toEqual(
+            expect.objectContaining( body )
+          )
+        } )
+    }
   } )
+
 
   test( 'GET /pairs', async () => {
     await supertest( application )

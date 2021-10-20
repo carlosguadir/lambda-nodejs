@@ -7,9 +7,11 @@
   "author": "Carlos Guadir",
   "license": "MIT",
   "scripts": {
-    "test": "TEST=unit jest --forceExit --testTimeout=240000",
+    "test": "jest --forceExit --testTimeout=10000",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --ignore-path .gitignore --fix .",
     "docs": "ts-node src/api/app.ts",
-    "off": "NODE_ENV=offline sls offline start --stage off",
+    "off": "sls offline start --stage off",
     "dev": "sls deploy --stage dev",
     "prod": "echo 'sls deploy --stage prod' && echo 'Do this only for production'"
   },

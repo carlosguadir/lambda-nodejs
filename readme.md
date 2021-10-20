@@ -40,13 +40,18 @@ You can test it with postman for endpoints and also see logs events
 
 ## Test TDD
 
-> ### NOTE
 > For run tests you need to add `.env.test` file on root dir 
 > the variables that you are going to need are the same
 > as local enviroment
 > 
-> Then you can run test script
 >  
+
+If you can run mongo container `docker-compose up -d`
+with this you can add `.env.test` with next enviroment variables
+```shell
+MONGO_URI=mongodb://localhost
+MONGO_DB=jedi
+```
 
 ```shell
 yarn test
@@ -73,6 +78,15 @@ yarn dev
 
 This package contains an autogen docs, you can run `yarn docs`
 and open [http://localhost:3000/docs](http://localhost:3000/docs)
+
+## Lint
+
+Run standard code configuration ESLint
+
+```shell
+yarn lint # Inspect linter
+yarn lint:fix # Inspect and autofix linter
+```
 
 ## Cron Schedule
 
